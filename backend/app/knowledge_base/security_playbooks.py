@@ -21,6 +21,17 @@ SECURITY_PLAYBOOKS = {
         ]
     },
 
+    "MALWARE": {
+        "mitre": "T1204",
+        "severity": "HIGH",
+        "actions": [
+            "Isolate affected host",
+            "Run malware scan",
+            "Collect forensic evidence",
+            "Review affected systems"
+        ]
+    },
+
     "RANSOMWARE": {
         "mitre": "T1486",
         "severity": "CRITICAL",
@@ -29,6 +40,17 @@ SECURITY_PLAYBOOKS = {
             "Disconnect network access",
             "Preserve forensic evidence",
             "Initiate incident response"
+        ]
+    },
+
+    "SQL_INJECTION": {
+        "mitre": "T1190",
+        "severity": "HIGH",
+        "actions": [
+            "Block malicious requests",
+            "Review database activity",
+            "Check application logs",
+            "Patch vulnerable endpoints"
         ]
     }
 }

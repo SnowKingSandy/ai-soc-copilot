@@ -5,7 +5,7 @@ from app.database import Base, engine
 from app.schemas.log_schema import LogRequest
 from app.schemas.incident_schema import IncidentResponse
 
-from app.services.llm_service import analyze_log
+from app.services.workflow_service import analyze_log
 from app.services.incident_service import (
     save_incident,
     get_all_incidents,

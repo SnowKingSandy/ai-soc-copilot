@@ -1,28 +1,46 @@
 import re
 
 
-def extract_metadata(log_text: str):
+def extract_metadata(log_text: str) -> dict:
 
-    ip_pattern = r"\b(?:\d{1,3}\.){3}\d{1,3}\b"
+    metadata = {
+        "source_ip": None,
+        "failed_attempts": 0
+    }
 
-    ip_matches = re.findall(
-        ip_pattern,
+    if not log_text:
+        return metadata
+
+    # Extract IP address
+    ip_match = re.search(
+        r"\b(?:\d{1,3}\.){3}\d{1,3}\b",
         log_text
     )
 
-    failed_attempts = 0
+    if ip_match:
+        metadata["source_ip"] = ip_match.group()
 
-    match = re.search(
+    # Extract failed attempts
+    failed_patterns = [
         r"(\d+)\s+failed",
-        log_text.lower()
-    )
+        r"(\d+)\s+unsuccessful",
+        r"(\d+)\s+login attempts",
+        r"(\d+)\s+authentication attempts"
+    ]
 
-    if match:
-        failed_attempts = int(
-            match.group(1)
+    for pattern in failed_patterns:
+
+        match = re.search(
+            pattern,
+            log_text.lower()
         )
 
-    return {
-        "source_ip": ip_matches[0] if ip_matches else None,
-        "failed_attempts": failed_attempts
-    }
+        if match:
+
+            metadata["failed_attempts"] = int(
+                match.group(1)
+            )
+
+            break
+
+    return metadata
