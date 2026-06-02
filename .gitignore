@@ -1,0 +1,140 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv
+.env.local
+.env.*.local
+
+# Environment variables
+.env
+.env.*.example
+!.env.example
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-workspace
+*.sublime-project
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.hypothesis/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+*.sql
+
+# Logs
+logs/
+*.log
+*.log.*
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+*.tmp
+
+# Node/Frontend
+node_modules/
+npm-debug.log
+yarn-error.log
+dist/
+build/
+.next/
+out/
+
+# Docker
+.docker/
+docker-compose.override.yml
+
+# Temporary files
+*.bak
+*.backup
+*.tmp
+*~
+.tmp/
+temp/
+
+# OS-specific
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# Project specific
+*.pem
+*.key
+secrets/
+credentials/
+config/local/
+
+# Byte-compiled / optimized / DLL files
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Type checking
+.pytype/
+
+# IDEs
+*.iml
+*.iws
+*.ipr
+
+# Mac
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+.directory
+
+# Misc
+.cache
+.env.production
+.cache/
