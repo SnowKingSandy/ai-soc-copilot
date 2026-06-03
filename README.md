@@ -135,9 +135,9 @@ ai-soc-copilot/
    ```
 
 6. **Access API**
-   - API: http://localhost:8000
-   - Docs: http://localhost:8000/docs
-   - ReDoc: http://localhost:8000/redoc
+- API: http://localhost:8000
+- Docs: http://localhost:8000/docs
+- ReDoc: http://localhost:8000/redoc
 
 ---
 
@@ -324,50 +324,53 @@ docker-compose up -d
 
 ---
 
-## 🤝 Contributing
+## Versioned Changelog
 
-Contributions are welcome! Please:
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Open a pull request
+### V1 — Initial project structure (commit: `V1 - Initial project structure`)
+- Date: initial work
+- What: Created the base repo layout and placeholder backend files to define boundaries and goals:
+  - `backend/app/` (api, services, schemas, models, core)
+  - `docs/`, `sample_logs/`, and initial `.gitignore`, `LICENSE`
+- Status: Foundation established for backend-first development.
 
----
+### V1.1 — Frontend scaffold (commit: `V1.1 - Add Next.js frontend scaffold and install UI dependencies`)
+- Date: follow-up milestone
+- What: Added a Next.js TypeScript frontend scaffold and installed primary UI dependencies:
+  - Created `frontend/` Next.js app (TypeScript) using `create-next-app`
+  - Installed `axios`, `recharts`, and `lucide-react`
+  - Created top-level `src/` scaffolding for `app/`, `components/`, `services/`, and `types/`
+- Status: Frontend scaffold ready; no production logic yet.
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 👤 Author
-
-Built as a portfolio project to showcase:
-- Production-grade Python backend architecture
-- AI/LLM integration
-- Multi-agent systems with LangGraph
-- RESTful API design
-- Database modeling
-- Software engineering best practices
-
----
-
-## 📞 Support
-
-For issues, questions, or suggestions:
-- Open an issue on GitHub
-- Check existing documentation
-- Review sample logs for examples
+### V1.2 — Dashboard v1 and frontend integration (commit: `V1.2 - Dashboard with basic incident stats and frontend scaffold`)
+- Date: June 3, 2026
+- What: Implemented the initial dashboard page and wired basic frontend scaffolding into the repository:
+  - `frontend/src/app/dashboard/page.tsx` — dashboard page that fetches `/stats` from the backend (displays a JSON preview)
+  - Small UI components scaffold under `frontend/src/components/`
+  - `frontend/src/services/api.ts` — axios client (baseURL set to backend URL during development)
+  - Committed frontend build files and moved app folder content into `frontend/src/app` to match Next.js app directory conventions
+- Status: Dashboard v1 is live locally (visit `http://localhost:3000/dashboard`) and repository updated
 
 ---
 
-## ⭐ Show Your Support
+## Recommended Commit / Release Naming
 
-If this project helps you, please give it a star! ⭐
+- `V1 - Initial project structure`
+- `V1.1 - Add Next.js frontend scaffold and install UI dependencies`
+- `V1.2 - Dashboard with basic incident stats and frontend scaffold`
+
+Use semantic, versioned commit messages for clarity when recruiters or reviewers inspect history.
 
 ---
 
-**Last Updated**: June 2, 2026  
-**Version**: 1.0.0  
-**Status**: Active Development
+## Next Milestones
+
+- Implement `/stats` backend endpoint returning aggregate incident counts.
+- Replace dummy dashboard display with visually formatted `StatsCard` components and `IncidentTable` connected to `/incidents` endpoints.
+- Add tests, CI pipeline, and a production-ready database (Postgres) plus Docker setup.
+
+---
+
+If you want, I can also add a `CHANGELOG.md` and tag a GitHub release for `v1.2`.
+
+**Last Updated**: June 3, 2026
+
