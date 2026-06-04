@@ -350,6 +350,19 @@ docker-compose up -d
   - Committed frontend build files and moved app folder content into `frontend/src/app` to match Next.js app directory conventions
 - Status: Dashboard v1 is live locally (visit `http://localhost:3000/dashboard`) and repository updated
 
+### V1.3 — Analytics dashboard & SOC visualizations (commit: `V1.3 - Analytics dashboard, incident management UI, and SOC visualizations`)
+- Date: June 4, 2026
+- What: Major frontend analytics and incident management improvements:
+  - Added professional SOC dashboard layout
+  - Added incident details drawer
+  - Added threat distribution analytics
+  - Added risk score analytics
+  - Added severity distribution charts
+  - Added multi-page frontend architecture
+  - Added analytics module
+  - Improved navigation and UI structure
+- Status: Frontend analytics module integrated; visuals and incident UI scaffolded.
+
 ---
 
 ## Recommended Commit / Release Naming
