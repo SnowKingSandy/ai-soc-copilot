@@ -1,5 +1,6 @@
 import json
 import re
+import os
 from typing import Dict
 
 from app.services.llm_service import model
@@ -29,6 +30,19 @@ Rules:
 - Return only JSON. No markdown, no explanation.
 - Keep items concise.
 """
+
+    # If no Gemini API key, return a mock report for local development
+    if not os.getenv("GEMINI_API_KEY"):
+        return {
+            "timeline": "[MOCK] 2026-06-04T10:00:00Z - Failed login from 10.0.0.5; 2026-06-04T10:02:00Z - Multiple attempts; 2026-06-04T10:05:00Z - IP blocked.",
+            "root_cause": "[MOCK] Brute-force login attempts against admin account from external IP.",
+            "attack_chain": "[MOCK] Initial Access -> Credential Access -> Persistence",
+            "recommended_actions": [
+                "Block source IP",
+                "Force password reset for affected accounts",
+                "Review authentication logs for similar patterns",
+            ],
+        }
 
     response = model.generate_content(prompt)
 

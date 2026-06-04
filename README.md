@@ -363,6 +363,19 @@ docker-compose up -d
   - Improved navigation and UI structure
 - Status: Frontend analytics module integrated; visuals and incident UI scaffolded.
 
+### Investigation Workspace — Demo (V1.4)
+- Date: June 4, 2026
+- What: Investigation workspace enabling analysts to run automated AI investigations per incident.
+- How to demo locally:
+  1. Start backend and frontend (see Quick Start).
+  2. Open `http://localhost:3000/incidents` and click an incident row.
+  3. In the Incident drawer, click **Investigate Incident**.
+  4. The app will call `POST /investigate` and display an investigation report (timeline, root cause, attack chain, recommended actions).
+
+Notes:
+- If you don't have a Gemini API key, the backend will automatically return a mock investigation report for local development.
+- To enable real LLM investigations, set `GEMINI_API_KEY` in `backend/.env`.
+
 ---
 
 ## Recommended Commit / Release Naming
