@@ -18,3 +18,10 @@ export interface Stats {
   medium: number;
   low: number;
 }
+
+export interface InvestigationReport {
+  timeline: string;
+  root_cause: string;
+  attack_chain: string;
+  recommended_actions: string[];
+}

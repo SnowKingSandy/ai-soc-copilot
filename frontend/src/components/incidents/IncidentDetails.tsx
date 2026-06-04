@@ -1,5 +1,9 @@
 "use client";
 
+import { useState } from "react";
+import { api } from "@/services/api";
+import { InvestigationReport } from "@/types/incident";
+
 import { Incident } from "@/types/incident";
 
 import {
@@ -30,6 +34,9 @@ export default function IncidentDetails({
   onOpenChange,
 }: IncidentDetailsProps) {
   if (!incident) return null;
+
+  const [investigating, setInvestigating] = useState(false);
+  const [report, setReport] = useState<InvestigationReport | null>(null);
 
   const severityColor = {
     Critical:
@@ -150,8 +157,69 @@ export default function IncidentDetails({
                 Incident Logged and Available for Review
               </span>
             </div>
+
+            <div className="mt-4">
+              <button
+                className="inline-flex items-center rounded-md bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700"
+                onClick={async () => {
+                  setInvestigating(true);
+                  setReport(null);
+
+                  try {
+                    const res = await api.post("/investigate", {
+                      incident_id: incident.id,
+                    });
+
+                    setReport(res.data);
+                  } catch (e) {
+                    setReport({
+                      timeline: "",
+                      root_cause: "Investigation failed",
+                      attack_chain: "",
+                      recommended_actions: [],
+                    });
+                  } finally {
+                    setInvestigating(false);
+                  }
+                }}
+              >
+                {investigating ? "Investigating..." : "Investigate Incident"}
+              </button>
+            </div>
           </div>
         </div>
+
+        {report && (
+          <div className="mt-6 rounded-xl border p-4 bg-white">
+            <h3 className="text-lg font-semibold">Investigation Report</h3>
+
+            <div className="mt-3 space-y-3">
+              <div>
+                <h4 className="font-medium">Timeline</h4>
+                <p className="text-sm text-muted-foreground">{report.timeline}</p>
+              </div>
+
+              <div>
+                <h4 className="font-medium">Root Cause</h4>
+                <p className="text-sm text-muted-foreground">{report.root_cause}</p>
+              </div>
+
+              <div>
+                <h4 className="font-medium">Attack Chain</h4>
+                <p className="text-sm text-muted-foreground">{report.attack_chain}</p>
+              </div>
+
+              <div>
+                <h4 className="font-medium">Recommended Actions</h4>
+                <ul className="list-disc list-inside text-sm text-muted-foreground">
+                  {report.recommended_actions.map((a, i) => (
+                    <li key={i}>{a}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        )}
       </SheetContent>
     </Sheet>
   );

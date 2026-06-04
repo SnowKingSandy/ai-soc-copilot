@@ -13,6 +13,11 @@ from app.services.incident_service import (
     delete_incident,
 )
 from app.services.stats_service import get_stats
+from app.services.investigation_service import investigate_incident
+from app.schemas.investigation_schema import (
+    InvestigateRequest,
+    InvestigationResponse,
+)
 
 # Create database tables on startup
 Base.metadata.create_all(bind=engine)
@@ -75,3 +80,18 @@ def remove_incident(incident_id: int):
 @app.get("/stats")
 def stats():
     return get_stats()
+
+
+@app.post("/investigate", response_model=InvestigationResponse)
+def investigate(request: InvestigateRequest):
+    report = investigate_incident(request.incident_id)
+
+    if not report:
+        return {
+            "timeline": "",
+            "root_cause": "Incident not found",
+            "attack_chain": "",
+            "recommended_actions": [],
+        }
+
+    return report
